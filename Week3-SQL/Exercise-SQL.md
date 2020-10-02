@@ -102,29 +102,30 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 	```
 	[YOUR QUERY HERE]
 
-	WITH
-  TABLE_2000 AS(
-  SELECT
-    zipcode,
-    population AS population_2000
-  FROM
-    `bigquery-public-data.census_bureau_usa.population_by_zip_2000` ),
-  TABLE_2010 AS(
-  SELECT
-    zipcode,
-    population AS population_2010
-  FROM
-    `bigquery-public-data.census_bureau_usa.population_by_zip_2010` )
-SELECT
-  A.zipcode,
-  A.population_2000,
-  B.population_2010
-FROM
-  TABLE_2000 AS A
-JOIN
-  TABLE_2010 AS B
-ON
-  A.zipcode = B.zipcode
+		WITH
+	  TABLE_2000 AS(
+	  SELECT
+	    zipcode,
+	    population AS population_2000
+	  FROM
+	    `bigquery-public-data.census_bureau_usa.population_by_zip_2000` ),
+	  TABLE_2010 AS(
+	  SELECT
+	    zipcode,
+	    population AS population_2010
+	  FROM
+	    `bigquery-public-data.census_bureau_usa.population_by_zip_2010` )
+		SELECT
+		  A.zipcode,
+		  A.population_2000,
+		  B.population_2010
+		FROM
+		  TABLE_2000 AS A
+		JOIN
+		  TABLE_2010 AS B
+		ON
+		  A.zipcode = B.zipcode
+
 	```
 
 ### For the next section, use the  `bigquery-public-data.google_political_ads.advertiser_weekly_spend` table.
@@ -140,17 +141,20 @@ ON
 	  advertiser_name
 	ORDER BY
   USD DESC
+
 	```
 2. Who was the 6th highest spender? (No need to insert query here, just type in the answer.)
 	```
 	[YOUR ANSWER HERE]
 	DSCC
+
 	```
 
 3. What week_start_date had the highest spend? (No need to insert query here, just type in the answer.)
 	```
 	[YOUR ANSWER HERE]
 	2020-02-23
+
 	```
 
 4. Using the `advertiser_weekly_spend` table, write a query that returns the sum of spend by week (using week_start_date) in usd for the month of August only.
@@ -165,11 +169,13 @@ ON
 	  CAST(week_start_date AS STRING) LIKE '%2020-08%'
 	GROUP BY
 	  week_start_date
+
 	```
 6.  How many ads did the 'TOM STEYER 2020' campaign run? (No need to insert query here, just type in the answer.)
 	```
 	[YOUR ANSWER HERE]
 	50
+
 	```
 7. Write a query that has, in the US region only, the total spend in usd for each advertiser_name and how many ads they ran. (Hint, you're going to have to join tables for this one).
 	```
@@ -184,6 +190,7 @@ ON
 	  election_cycle LIKE '%US%'
 	GROUP BY
 	  advertiser_name
+
 	```
 8. For each advertiser_name, find the average spend per ad.
 	```
@@ -195,6 +202,7 @@ ON
 	  `bigquery-public-data.google_political_ads.advertiser_weekly_spend`
 	GROUP BY
 	  advertiser_name
+
 	```
 10. Which advertiser_name had the lowest average spend per ad that was at least above 0.
 	```
@@ -210,6 +218,7 @@ ON
 	  advertiser_name
 	ORDER BY
 	  AVERAGE_SPENT ASC
+
 	```
 ## For this next section, use the `new_york_citibike` datasets.
 
@@ -254,7 +263,7 @@ ON
   FROM `bigquery-public-data.new_york_citibike.citibike_trips`
   GROUP BY start_station_name, bikeid
   ),
-ending AS (
+	ending AS (
   SELECT bikeid, end_station_name, count(end_station_id) AS END_TRIPS
   FROM `bigquery-public-data.new_york_citibike.citibike_trips`
   GROUP BY end_station_name, bikeid

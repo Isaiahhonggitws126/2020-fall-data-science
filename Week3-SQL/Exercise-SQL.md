@@ -132,15 +132,15 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 1. Using the `advertiser_weekly_spend` table, write a query that finds the advertiser_name that spent the most in usd.
 	```
 	[YOUR QUERY HERE]
-	SELECT
-  advertiser_name,
-  MAX(spend_usd) AS USD
-	FROM
-	  `bigquery-public-data.google_political_ads.advertiser_weekly_spend`
-	GROUP BY
-	  advertiser_name
-	ORDER BY
-  USD DESC
+		SELECT
+		  advertiser_name,
+		  MAX(spend_usd) AS USD
+		FROM
+		  `bigquery-public-data.google_political_ads.advertiser_weekly_spend`
+		GROUP BY
+		  advertiser_name
+		ORDER BY
+	  	USD DESC
 
 	```
 2. Who was the 6th highest spender? (No need to insert query here, just type in the answer.)
@@ -161,8 +161,8 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 	```
 	[YOUR QUERY HERE]
 	SELECT
-  week_start_date,
-  SUM(spend_usd) AS USD
+	  week_start_date,
+	  SUM(spend_usd) AS USD
 	FROM
 	  `bigquery-public-data.google_political_ads.advertiser_weekly_spend`
 	WHERE
@@ -181,23 +181,23 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 	```
 		[YOUR QUERY HERE]
 		SELECT
-  advertiser_name,
-  SUM(spend_usd) AS TOTAL_SPENT,
-  COUNT(advertiser_id) AS TOTAL_ADS
-	FROM
-	  `bigquery-public-data.google_political_ads.advertiser_weekly_spend`
-	WHERE
-	  election_cycle LIKE '%US%'
-	GROUP BY
-	  advertiser_name
+		  advertiser_name,
+		  SUM(spend_usd) AS TOTAL_SPENT,
+		  COUNT(advertiser_id) AS TOTAL_ADS
+		FROM
+		  `bigquery-public-data.google_political_ads.advertiser_weekly_spend`
+		WHERE
+		  election_cycle LIKE '%US%'
+		GROUP BY
+		  advertiser_name
 
 	```
 8. For each advertiser_name, find the average spend per ad.
 	```
 	[YOUR QUERY HERE]
 	SELECT
-  advertiser_name,
-  AVG(spend_usd) AS AVERAGE_SPENT
+	  advertiser_name,
+	  AVG(spend_usd) AS AVERAGE_SPENT
 	FROM
 	  `bigquery-public-data.google_political_ads.advertiser_weekly_spend`
 	GROUP BY
@@ -207,9 +207,9 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 10. Which advertiser_name had the lowest average spend per ad that was at least above 0.
 	```
 	[YOUR QUERY HERE]
-	SELECT
-  advertiser_name,
-  AVG(spend_usd) AS AVERAGE_SPENT
+		SELECT
+	  advertiser_name,
+	  AVG(spend_usd) AS AVERAGE_SPENT
 	FROM
 	  `bigquery-public-data.google_political_ads.advertiser_weekly_spend`
 	WHERE
@@ -225,9 +225,9 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 1. Who went on more bike trips, Males or Females?
 	```
 	[YOUR QUERY HERE]
-	SELECT
-  gender,
-  COUNT(tripduration) AS BIKE_TRIPS
+		SELECT
+	  gender,
+	  COUNT(tripduration) AS BIKE_TRIPS
 	FROM
 	  `bigquery-public-data.new_york_citibike.citibike_trips`
 	GROUP BY
@@ -239,9 +239,9 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 2. What was the average, shortest, and longest bike trip taken in minutes?
 	```
 	[YOUR QUERY HERE]
-	SELECT
-  MIN(SHORTEST_TRIPS) AS AVG_SHORT_TRIP,
-  MAX(LONGEST_TRIPS) AS AVG_LONG_TRIP
+		SELECT
+	  MIN(SHORTEST_TRIPS) AS AVG_SHORT_TRIP,
+	  MAX(LONGEST_TRIPS) AS AVG_LONG_TRIP
 	FROM (
 	  SELECT
 	    bikeid,
@@ -258,16 +258,16 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 	```
 	[YOUR QUERY HERE]
 
-	WITH starting AS(
-  SELECT bikeid, start_station_name, count(start_station_id) AS START_TRIPS
-  FROM `bigquery-public-data.new_york_citibike.citibike_trips`
-  GROUP BY start_station_name, bikeid
-  ),
-	ending AS (
-  SELECT bikeid, end_station_name, count(end_station_id) AS END_TRIPS
-  FROM `bigquery-public-data.new_york_citibike.citibike_trips`
-  GROUP BY end_station_name, bikeid
-  ) SELECT A.START_TRIPS, B.END_TRIPS FROM starting AS A JOIN ending AS B ON A.bikeid = B.bikeid
+		WITH starting AS(
+	  SELECT bikeid, start_station_name, count(start_station_id) AS START_TRIPS
+	  FROM `bigquery-public-data.new_york_citibike.citibike_trips`
+	  GROUP BY start_station_name, bikeid
+	  ),
+		ending AS (
+	  SELECT bikeid, end_station_name, count(end_station_id) AS END_TRIPS
+	  FROM `bigquery-public-data.new_york_citibike.citibike_trips`
+	  GROUP BY end_station_name, bikeid
+	  ) SELECT A.START_TRIPS, B.END_TRIPS FROM starting AS A JOIN ending AS B ON A.bikeid = B.bikeid
 
 	```
 # The next section is the Google Colab section.  

@@ -7,7 +7,7 @@
 	3. Click the Add Data icon
 	4. Add any dataset
 	5. `bigquery-public-data` should become visible and populate in the BigQuery UI.
-3. Add your queries where it says [YOUR QUERY HERE].
+3. Add your queries where it says  .
 4. Make sure you add your query in between the triple tick marks.
 ---
 
@@ -15,7 +15,6 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 
 5. Write a query that tells us how many rows are in the table.
 	```
-	[YOUR QUERY HERE]
 	SELECT
 		count(*)
 	FROM
@@ -24,7 +23,6 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 
 7. Write a query that tells us how many _distinct_ values there are in the complaint_description column.
 	```
-	[YOUR QUERY HERE]
 	SELECT
 		COUNT(DISTINCT complaint_description)
 	FROM
@@ -33,7 +31,6 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 
 8. Write a query that counts how many times each owning_department appears in the table and orders them from highest to lowest.
 	```
-	[YOUR QUERY HERE]
 	SELECT
 	  owning_department,
 	  COUNT(*) as T
@@ -48,7 +45,6 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 
 9. Write a query that lists the top 5 complaint_description that appear most and the amount of times they appear in this table. (hint... limit)
 	```
-	[YOUR QUERY HERE]
 	SELECT
 	  complaint_description,
 	  COUNT(*) as T
@@ -62,7 +58,6 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 	  ```
 10. Write a query that lists and counts all the complaint_description, just for the where the owning_department is 'Animal Services Office'.
 	```
-	[YOUR QUERY HERE]
 	SELECT
 	  COUNT(complaint_description) as T,
 	  owning_department
@@ -77,7 +72,6 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 
 11. Write a query to check if there are any duplicate values in the unique_key column (hint.. There are two was to do this, one is to use a temporary table for the groupby, then filter for values that have more than one count, or, using just one table but including the  `having` function).
 	```
-	[YOUR QUERY HERE]
 	WITH
 	  T AS (
 	  SELECT
@@ -100,8 +94,6 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 
 1. Write a query that returns each zipcode and their population for 2000 and 2010.
 	```
-	[YOUR QUERY HERE]
-
 		WITH
 	  TABLE_2000 AS(
 	  SELECT
@@ -131,7 +123,6 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 ### For the next section, use the  `bigquery-public-data.google_political_ads.advertiser_weekly_spend` table.
 1. Using the `advertiser_weekly_spend` table, write a query that finds the advertiser_name that spent the most in usd.
 	```
-	[YOUR QUERY HERE]
 		SELECT
 		  advertiser_name,
 		  MAX(spend_usd) AS USD
@@ -145,21 +136,18 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 	```
 2. Who was the 6th highest spender? (No need to insert query here, just type in the answer.)
 	```
-	[YOUR ANSWER HERE]
 	DSCC
 
 	```
 
 3. What week_start_date had the highest spend? (No need to insert query here, just type in the answer.)
 	```
-	[YOUR ANSWER HERE]
 	2020-02-23
 
 	```
 
 4. Using the `advertiser_weekly_spend` table, write a query that returns the sum of spend by week (using week_start_date) in usd for the month of August only.
 	```
-	[YOUR QUERY HERE]
 	SELECT
 	  week_start_date,
 	  SUM(spend_usd) AS USD
@@ -173,13 +161,11 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 	```
 6.  How many ads did the 'TOM STEYER 2020' campaign run? (No need to insert query here, just type in the answer.)
 	```
-	[YOUR ANSWER HERE]
 	50
 
 	```
 7. Write a query that has, in the US region only, the total spend in usd for each advertiser_name and how many ads they ran. (Hint, you're going to have to join tables for this one).
 	```
-		[YOUR QUERY HERE]
 		SELECT
 		  advertiser_name,
 		  SUM(spend_usd) AS TOTAL_SPENT,
@@ -194,7 +180,6 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 	```
 8. For each advertiser_name, find the average spend per ad.
 	```
-	[YOUR QUERY HERE]
 	SELECT
 	  advertiser_name,
 	  AVG(spend_usd) AS AVERAGE_SPENT
@@ -206,7 +191,6 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 	```
 10. Which advertiser_name had the lowest average spend per ad that was at least above 0.
 	```
-	[YOUR QUERY HERE]
 		SELECT
 	  advertiser_name,
 	  AVG(spend_usd) AS AVERAGE_SPENT
@@ -224,8 +208,7 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 
 1. Who went on more bike trips, Males or Females?
 	```
-	[YOUR QUERY HERE]
-		SELECT
+	SELECT
 	  gender,
 	  COUNT(tripduration) AS BIKE_TRIPS
 	FROM
@@ -238,8 +221,7 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 	```
 2. What was the average, shortest, and longest bike trip taken in minutes?
 	```
-	[YOUR QUERY HERE]
-		SELECT
+	SELECT
 	  MIN(SHORTEST_TRIPS) AS AVG_SHORT_TRIP,
 	  MAX(LONGEST_TRIPS) AS AVG_LONG_TRIP
 	FROM (
@@ -256,8 +238,6 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 
 3. Write a query that, for every station_name, has the amount of trips that started there and the amount of trips that ended there. (Hint, use two temporary tables, one that counts the amount of starts, the other that counts the number of ends, and then join the two.)
 	```
-	[YOUR QUERY HERE]
-
 		WITH starting AS(
 	  SELECT bikeid, start_station_name, count(start_station_id) AS START_TRIPS
 	  FROM `bigquery-public-data.new_york_citibike.citibike_trips`
@@ -277,5 +257,5 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 4. Click the 'Share' button on the top right.  
 5. Change the permissions so anyone with link can view.
 6. Copy the link and paste it right below this line.
-	* YOUR LINK:  ________________________________
+	* YOUR LINK: https://colab.research.google.com/drive/1OYE1GKGbnj34ovGCV70OuVKRmJws2YkE?usp=sharing
 9. Complete the two questions in the colab notebook file.
